@@ -7,7 +7,7 @@ int main(int argc, char* argv[])
 {
 	gfxInitDefault();
 	consoleInit(GFX_TOP, NULL);
-	printf("plac gae\n");
+	printf("plac is not gae\n");
 	printf("I don't like this\n");
 	printf("Pretend this is chess, ok?\n");
 	// Main loop
