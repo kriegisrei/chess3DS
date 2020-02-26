@@ -5,6 +5,7 @@
 
 int main(int argc, char* argv[])
 {
+	u32 aptbuf[0x400/4];
 	gfxInitDefault();
 	consoleInit(GFX_TOP, NULL);
 	printf("plac is not gae\n");
