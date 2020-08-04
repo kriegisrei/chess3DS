@@ -14,7 +14,8 @@ int main(int argc, char* argv[])
 		hidScanInput();
 		u32 kDown = hidKeysDown();
 		printf("Krieg shoud finish p4g\n");
-		printf("also plac gae\n")
+		printf("also plac gae\n");
+		printf("press start to exit, press anything else to get free game");
 		if (kDown & KEY_START)
 			break; // break in order to return to hbmenu
 	}
