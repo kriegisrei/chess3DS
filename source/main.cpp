@@ -12,9 +12,6 @@ int main(int argc, char* argv[])
 	gfxInitDefault();
 	consoleInit(GFX_TOP, NULL);
 	
-	printf("Krieg shoud finish p4g\n");
-	printf("also plac gae\n");
-	printf("press start to exit, press anything else to get free game\n");
 
 	drawInit();
 	setupBoard();
