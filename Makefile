@@ -31,6 +31,13 @@ include $(DEVKITARM)/3ds_rules
 #     - icon.png
 #     - <libctru folder>/default_icon.png
 #---------------------------------------------------------------------------------
+APP_TITLE	:=	Chess3DS
+APP_DESCRIPTION	:=	Chess on your 3DS
+APP_AUTHOR	:=	Krieg
+ASSETS		:=	assets
+ICON		:=	$(ASSETS)/icon.png
+
+
 TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
 SOURCES		:=	source
