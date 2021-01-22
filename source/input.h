@@ -27,6 +27,7 @@ void gameInput(u32 kDown) {
          chessBoard[gameState.selectedPiece.column][gameState.selectedPiece.row].currentPiece = replace;
          movePiece(gameState.selectedPiece, gameState.promotedPawnMove);
          gameState.pieceSelected = false;
+         gameState.promotion = false;
       }
    }
 
