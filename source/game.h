@@ -57,7 +57,6 @@ void setupBoard() {
    gameState.kingPosBlack.row = 7;
 }
 
-// Todo: en passant
 void calculatePieceMoves(BoardSquare (&chessBoard)[8][8], Position& position, std::vector<Position> (& moveList)) {
    BoardSquare & currentSquare = chessBoard[position.column][position.row];
    Position newMove;
