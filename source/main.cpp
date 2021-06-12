@@ -4,6 +4,7 @@
 #include <3ds.h>
 
 #include "Game.h"
+#include "Network.h"
 #include "Input.h"
 #include "Draw.h"
 
@@ -12,10 +13,14 @@ int main(int argc, char* argv[])
 	gfxInitDefault();
 	consoleInit(GFX_TOP, NULL);
 	
-
 	drawInit();
 	setupBoard();
 	calculateAllMoves(white);
+
+	atexit(gfxExit);
+	atexit(drawFinish);
+
+	printf("Press left on the d-pad for single-system multiplayer. Press right for online multiplayer.\n");
 
 	// Main Loop
 	while (aptMainLoop())
@@ -23,14 +28,17 @@ int main(int argc, char* argv[])
 		hidScanInput();
 		u32 kDown = hidKeysDown();
 
-		gameInput(kDown);
+		if (!gamemode) {
+			menuInput(kDown);
+		}
+		else {
+			gameInput(kDown);
+		}
 		drawUpdate();
 	
 		if (kDown & KEY_START)
 			break; // break in order to return to hbmenu
 	}
 
-	drawFinish();
-	gfxExit();
 	return 0;
 }

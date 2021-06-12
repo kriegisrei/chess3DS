@@ -30,6 +30,17 @@ struct GameState {
 
 GameState gameState;
 
+enum Gamemode { unselected, system_multiplayer, online_multiplayer};
+Gamemode gamemode;
+
+struct NetworkState {
+   bool connected;
+   bool gameStarted;
+   Color systemColor;
+};
+
+NetworkState networkState;
+
 // [columns][rows] / [x][y]
 BoardSquare chessBoard[8][8];
 std::vector<Position> possibleMoves[8][8];
@@ -57,7 +68,6 @@ void setupBoard() {
    gameState.kingPosBlack.row = 7;
 }
 
-// Todo: en passant
 void calculatePieceMoves(BoardSquare (&chessBoard)[8][8], Position& position, std::vector<Position> (& moveList)) {
    BoardSquare & currentSquare = chessBoard[position.column][position.row];
    Position newMove;
@@ -208,7 +218,7 @@ void calculatePieceMoves(BoardSquare (&chessBoard)[8][8], Position& position, st
          }
       }
       // Castling
-      if (!currentSquare.pieceMoved) {
+      if (!currentSquare.pieceMoved && !gameState.check) {
          // Left
          if (!chessBoard[0][position.row].pieceMoved && chessBoard[0][position.row].currentPiece == rook) {
             // Check if spaces are empty
@@ -453,7 +463,7 @@ void calculateAllMoves(Color playerColor) {
 
    // No moves.
    if (gameState.check) {
-      printf("Checkmate %d won (White is 0, Black is 1)\n", !gameState.playerTurn);
+      printf("Checkmate %s won.\n", (!gameState.playerTurn) ? "black" : "white");
    }
    else {
       printf("Stalemate\n");
