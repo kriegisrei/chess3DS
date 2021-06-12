@@ -218,7 +218,7 @@ void calculatePieceMoves(BoardSquare (&chessBoard)[8][8], Position& position, st
          }
       }
       // Castling
-      if (!currentSquare.pieceMoved) {
+      if (!currentSquare.pieceMoved && !gameState.check) {
          // Left
          if (!chessBoard[0][position.row].pieceMoved && chessBoard[0][position.row].currentPiece == rook) {
             // Check if spaces are empty
