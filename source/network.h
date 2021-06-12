@@ -20,7 +20,7 @@
 
 #include <3ds.h>
 
-#define CHESS_SERVER_ADDRESS "0.0.0.0"
+#define CHESS_SERVER_ADDRESS "152.67.248.0"
 
 #define SOC_ALIGN       0x1000
 #define SOC_BUFFERSIZE  0x100000
