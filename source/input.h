@@ -2,7 +2,25 @@ static touchPosition prevTouch = { 0, 0 };
 
 static Position passIn;
 
+void menuInput(u32 kDown) {
+   if (kDown & KEY_LEFT) {
+      gamemode = system_multiplayer;
+      consoleClear();
+   }
+   else if (kDown & KEY_RIGHT) {
+      gamemode = online_multiplayer;
+      consoleClear();
+      networkInit();
+   }
+}
+
 void gameInput(u32 kDown) {
+   if (gamemode == online_multiplayer) {
+      networkUpdate();
+      if (!networkState.gameStarted || (networkState.systemColor != gameState.playerTurn)) {
+         return;
+      }
+   }
    touchPosition touch;
 
    //Read the touch screen coordinates
@@ -26,6 +44,7 @@ void gameInput(u32 kDown) {
       if (replace) {
          chessBoard[gameState.selectedPiece.column][gameState.selectedPiece.row].currentPiece = replace;
          movePiece(gameState.selectedPiece, gameState.promotedPawnMove);
+         netSendMove(gameState.selectedPiece, passIn, replace);
          gameState.pieceSelected = false;
          gameState.promotion = false;
       }
@@ -70,6 +89,9 @@ void gameInput(u32 kDown) {
                      }
                      else {
                         movePiece(gameState.selectedPiece, passIn);
+                        if (gamemode == online_multiplayer) {
+                           netSendMove(gameState.selectedPiece, passIn, none);
+                        }
                         gameState.pieceSelected = false;
                      }
                   }

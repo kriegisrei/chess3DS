@@ -30,6 +30,17 @@ struct GameState {
 
 GameState gameState;
 
+enum Gamemode { unselected, system_multiplayer, online_multiplayer};
+Gamemode gamemode;
+
+struct NetworkState {
+   bool connected;
+   bool gameStarted;
+   Color systemColor;
+};
+
+NetworkState networkState;
+
 // [columns][rows] / [x][y]
 BoardSquare chessBoard[8][8];
 std::vector<Position> possibleMoves[8][8];
@@ -452,7 +463,7 @@ void calculateAllMoves(Color playerColor) {
 
    // No moves.
    if (gameState.check) {
-      printf("Checkmate %d won (White is 0, Black is 1)\n", !gameState.playerTurn);
+      printf("Checkmate %s won.\n", (!gameState.playerTurn) ? "black" : "white");
    }
    else {
       printf("Stalemate\n");
