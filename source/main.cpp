@@ -3,10 +3,10 @@
 #include <string.h>
 #include <3ds.h>
 
-#include "Game.h"
-#include "Network.h"
-#include "Input.h"
-#include "Draw.h"
+#include "game.h"
+#include "network.h"
+#include "input.h"
+#include "draw.h"
 
 int main(int argc, char* argv[])
 {
